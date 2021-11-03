@@ -1,0 +1,25 @@
+body{
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+   
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.buttons{
+display: flex;
+flex-direction: column;
+margin: 30px;
+
+}
+
+.btn{
+margin: 4px;;
+}
