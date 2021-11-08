@@ -1,13 +1,3 @@
-
-//assigning variables to HTML elements
-var questionEl = document.querySelector(".questionContainer");
-var startEl = document.querySelector("#start-btn");
-var timerEl = document.getElementById('countdown');
-var mainEl = document.getElementById('main');
-//var answerEl = document.querySelector(".answerButton");
-
-
-//setting the questions, choices and correct answer
 var questions = [
     {
       question: "Which of the following is not a data type",
@@ -34,122 +24,162 @@ var questions = [
       choices: ["Strings", "Numbers", "Boolean", "All of the above"],
       correctAnswer: "All of the above",
     },
-];
-  
-console.log(questions)
 
-  let questionsIndex = 0;
+]; 
+let questionsIndex = 0;
 
-  var buttonEl ="";
+//assigning variables to HTML elements
+var questionEl = document.querySelector(".questionContainer");
+var startEl = document.querySelector("#start-btn");
+var timerEl = document.querySelector('.countdown');
+var mainEl = document.querySelector('#main');
+var answersEl = document.querySelector(".answerContainer");
+var showQs = document.getElementById('displayQs')
+//var answerEl = document.querySelector(".answerButton");
 
-function createQuestion(content){
-    //questionEl.innerHTML ="";
+
+
+function startGame(){
+ 
+  startEl.classList.add('hide');
+  createQuestion(questions);
+  setTimer();
+ 
+}
+
+startEl.addEventListener('click', startGame());
+//startEl.addEventListener('click', createQuestion (questions));
+
+
+  //function to load the first question 
+function createQuestion(){
+   
+    //questionEl.innerHTML =""; - don't think this is needed anymore
     var count = 0;
         //create
-    var pEl = document.createElement('p');
-       console.log(pEl);
+       var pEl = document.createElement('p');
+      
        //update
        pEl.textContent = questions[count].question;
       //append
        questionEl.appendChild(pEl);
-      
-       buttonEl = document.createElement("button");
-       buttonEl.textContent = questions[count].choices;
-        questionEl.appendChild(buttonEl);
-      // for(var i=0; questions[count].choices.length;i++){
-      // // create button here
-      // var buttonEl = document.createElement("button");
-      // console.log(buttonEl)
-      // // assign text from options
-      // buttonEl.textContent = questions[count].choices;
-      // //append
-      // questionEl.appendChild(buttonEl);
-      // //
-      // }
+
+       showQs.textContent = questions[questionsIndex].question
+
+       var buttonArea = document.getElementById('answerContainer');
+       buttonArea.innerHTML =''
+  
+       // loop for generating new button for each choice
+       for (var i=0; i <=questions[questionsIndex].choices.length; i++){
+
+        var buttonEl = document.createElement("button");
+        buttonEl.setAttribute('class', '');
+    
+        buttonEl.textContent = questions[questionsIndex].choices[i];
+
+        buttonEl.onclick = checkAnswer
+
+        answersEl.appendChild(buttonEl);
+  
+      }
 
     }
 
-    //event listener to start the quiz - clicking on start button should trigger
-    startEl.addEventListener('click', createQuestion (questions));
-
-    buttonEl.addEventListener('click', loadNewQuestion(questions));
-    
-    //createQuestion (questions);
-    // for (var i=0; i< content.length; i++){
-    //     var currentQuestion = content[i];
-    //     console.log(currentQuestion);
-    //     //create
-    //     var pEl = document.createElement('p');
-    //     console.log()
-    //     //update
-    //     pEl.textContent = currentQuestion.question;
-    //     //pEl.textContent = currentQuestion;
-    //     //append
-    //     questionEl.appendChild(pEl);
-
-    // }
+  let seconds = 20
+  let score = 0
+  let incorrect = 0
 
 
-  function loadNewQuestion(event){
-     console.log(questionsIndex);
-    var questionsIndex = event.target.value
-     createQuestion(questions[questionsIndex]);
+  function checkAnswer(){
+
+    if(this.textContent === questions[questionsIndex].correctAnswer){
+      alert('correct');
+      score += 1
+
+    } else {
+      alert ('incorrect');
+      incorrect += 
+      
+      seconds -= 5;
+    }
+
+    //  timerEl.textContent = seconds
+
+
+   questionsIndex++;
+
+   if(questionsIndex === questions.length){
+     endGame()
+   } else {
+     createQuestion()
+   }
+
+
   }
 
-if (questionsIndex === 0){
-    createQuestion(questions[questionsIndex]);
-    startEl.setAttribute('value', questions.length +1);
-   startEl.addEventListener("click", loadNewQuestion);
- }
+  //timerelement 
+    //startGame.addEventListener('click', function setTimer(){
+
+  function setTimer(){
+
+  var timeInterval = setInterval(function(){
+
+  seconds--
+  timerEl.textContent = seconds
+
+if(seconds === 0){
+    timerEl.textContent = '0';
+    clearInterval(timeInterval)
+    alert("Game Over")
+    endGame()
+  }
+
+  }, 1000)
+
+  };
 
 
- function countdown() {
-  var timeLeft = 10;
+    // fix loadNewQuestion function so the next question and choices load as its not working 
+    // first question is appearing straightaway when it should only display when createQuestion is called from eventlistner
+    // fix timer function as its not working - its not stopping at 0 
+    // all the logic about scoring and saving in local storage
+    // the logic behind the timer being reduced if incorrect answer is selected
+    // the logic if timer gets to zero or last question answered
+    // the end page for high score and add initials and display high scores
 
-  
-  var timeInterval = setInterval(function () {
-   
-    timeLeft--;
-    timerEl.textContent =  timeLeft; 
 
-    if(timeLeft === 0) {
-      clearInterval(timeInterval);
-      displayMessage();
-    }
 
-  },1000);
+
+
+function endGame (){
+   alert(score);
+  // add play again button
+  // add name
+  // event listener for viewScore 
 }
 
-function displayMessage() {
-  
+function viewScore(){
+
+
 }
 
-countdown()
-
-//createQuestion (questions);
 
 
-// const startButton = document.getElementById("start-btn");
-// const questionContainerElement = document.getElementById("questionOne-container");
 
 
-// let questionIndex = 0;
 
-// const startButton = document.getElementById("start-btn");
-// const questionContainerElement = document.getElementById("questionOne-container");
 
-// //startButton.addEventListener('click', startQuiz)
 
-// startButton.addEventListener("click", function startGame(event) {
-//   // hide start
-//   startButton.classList.add("hide");
-//   // start timer
 
-//   // get qs
-//   getQs();
-//   // call question function
 
-// });
+
+
+
+
+
+
+
+
 
 // function getQs() {
 //   var currentQs = question[questionIndex];
