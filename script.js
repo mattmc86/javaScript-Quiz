@@ -2,7 +2,9 @@
 //assigning variables to HTML elements
 var questionEl = document.querySelector(".questionContainer");
 var startEl = document.querySelector("#start-btn");
-var answerEl = document.querySelector(".answerButton");
+var timerEl = document.getElementById('countdown');
+var mainEl = document.getElementById('main');
+//var answerEl = document.querySelector(".answerButton");
 
 
 //setting the questions, choices and correct answer
@@ -29,7 +31,7 @@ var questions = [
     },
     {
        question: "Arrays in Javascript can be used to store........",
-      answers: ["Strings", "Numbers", "Boolean", "All of the above"],
+      choices: ["Strings", "Numbers", "Boolean", "All of the above"],
       correctAnswer: "All of the above",
     },
 ];
@@ -38,38 +40,93 @@ console.log(questions)
 
   let questionsIndex = 0;
 
+  var buttonEl ="";
+
 function createQuestion(content){
     //questionEl.innerHTML ="";
-    for (var i=0; i< content.length; i++){
-        var currentQuestion = content[i];
-        console.log(currentQuestion);
+    var count = 0;
         //create
-        var pEl = document.createElement('p');
-        console.log()
-        //update
-        pEl.textContent = currentQuestion;
-        //append
-        questionEl.appendChild(pEl);
-
-        //how to get choices into answerEl???
+    var pEl = document.createElement('p');
+       console.log(pEl);
+       //update
+       pEl.textContent = questions[count].question;
+      //append
+       questionEl.appendChild(pEl);
+      
+       buttonEl = document.createElement("button");
+       buttonEl.textContent = questions[count].choices;
+        questionEl.appendChild(buttonEl);
+      // for(var i=0; questions[count].choices.length;i++){
+      // // create button here
+      // var buttonEl = document.createElement("button");
+      // console.log(buttonEl)
+      // // assign text from options
+      // buttonEl.textContent = questions[count].choices;
+      // //append
+      // questionEl.appendChild(buttonEl);
+      // //
+      // }
 
     }
-}
 
- function loadNewQuestion(event){
-    console.log(questionsIndex);
+    //event listener to start the quiz - clicking on start button should trigger
+    startEl.addEventListener('click', createQuestion (questions));
+
+    buttonEl.addEventListener('click', loadNewQuestion(questions));
+    
+    //createQuestion (questions);
+    // for (var i=0; i< content.length; i++){
+    //     var currentQuestion = content[i];
+    //     console.log(currentQuestion);
+    //     //create
+    //     var pEl = document.createElement('p');
+    //     console.log()
+    //     //update
+    //     pEl.textContent = currentQuestion.question;
+    //     //pEl.textContent = currentQuestion;
+    //     //append
+    //     questionEl.appendChild(pEl);
+
+    // }
+
+
+  function loadNewQuestion(event){
+     console.log(questionsIndex);
     var questionsIndex = event.target.value
      createQuestion(questions[questionsIndex]);
- }
+  }
 
 if (questionsIndex === 0){
     createQuestion(questions[questionsIndex]);
-   startEl.setAttribute('value', questions.length +1);
+    startEl.setAttribute('value', questions.length +1);
    startEl.addEventListener("click", loadNewQuestion);
+ }
+
+
+ function countdown() {
+  var timeLeft = 10;
+
+  
+  var timeInterval = setInterval(function () {
+   
+    timeLeft--;
+    timerEl.textContent =  timeLeft; 
+
+    if(timeLeft === 0) {
+      clearInterval(timeInterval);
+      displayMessage();
+    }
+
+  },1000);
 }
 
+function displayMessage() {
+  
+}
 
-createQuestion (questions);
+countdown()
+
+//createQuestion (questions);
 
 
 // const startButton = document.getElementById("start-btn");
