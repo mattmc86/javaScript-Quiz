@@ -159,6 +159,7 @@ function endGame (){
    questionEl.classList.add('hide');
    answersEl.classList.add('hide');
    timerEl.classList.add('hide');
+   questionsIndex = 0;
   
 }
 
@@ -166,7 +167,7 @@ function endGame (){
 var replayEl = document.getElementById("playAgain");
 var submitEl = document.getElementById('submit');
 var backEl = document.getElementById('goBack');
-var clearEl = document.getElementById('clear');
+//var clearEl = document.getElementById('clear');
 
 
 submitEl.addEventListener("click", function() {
@@ -175,6 +176,7 @@ submitEl.addEventListener("click", function() {
 
 replayEl.addEventListener("click", function() {
   startGame();
+  console.log(replayEl)
 });
 
 backEl.addEventListener("click", function() {
