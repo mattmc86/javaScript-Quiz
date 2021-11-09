@@ -34,14 +34,16 @@ var startEl = document.querySelector("#start-btn");
 var timerEl = document.querySelector('.countdown');
 var mainEl = document.querySelector('#main');
 var answersEl = document.querySelector(".answerContainer");
-var showQs = document.getElementById('displayQs')
+var showQs = document.getElementById('displayQs');
+var responseEL = document.getElementById('response');
+
 //var answerEl = document.querySelector(".answerButton");
 
 
 
 function startGame(){
  
-  startEl.classList.add('hide');
+  startEl.classList.add('.hide');
   createQuestion(questions);
   setTimer();
  
@@ -73,7 +75,7 @@ function createQuestion(){
        for (var i=0; i <=questions[questionsIndex].choices.length; i++){
 
         var buttonEl = document.createElement("button");
-        buttonEl.setAttribute('class', '');
+        buttonEl.setAttribute('class', 'background: purple');
     
         buttonEl.textContent = questions[questionsIndex].choices[i];
 
@@ -93,9 +95,12 @@ function createQuestion(){
   function checkAnswer(){
 
     if(this.textContent === questions[questionsIndex].correctAnswer){
+      
       alert('correct');
-      score += 1
-
+      // score += 1
+      // var check = "correct";
+      // check.textContent = check;
+      // responseEL.appendChild(check);
     } else {
       alert ('incorrect');
       incorrect += 
@@ -139,102 +144,27 @@ if(seconds === 0){
   };
 
 
-    // fix loadNewQuestion function so the next question and choices load as its not working 
-    // first question is appearing straightaway when it should only display when createQuestion is called from eventlistner
-    // fix timer function as its not working - its not stopping at 0 
-    // all the logic about scoring and saving in local storage
-    // the logic behind the timer being reduced if incorrect answer is selected
-    // the logic if timer gets to zero or last question answered
-    // the end page for high score and add initials and display high scores
-
-
-
-
-
 function endGame (){
    alert(score);
+   window.location.href = 'enterScore.html';
+
+   //<a href= "highScore.html">HighScores</a>
   // add play again button
-  // add name
-  // event listener for viewScore 
+  // add name and submit button
+  
 }
+
+var replayEl = document.getElementById("playAgain")
+var submitEl = document.getElementById('submit')
+var backEl = document.getElementById('goBack')
+var clearEl = document.getElementById('clear')
+
+submitEl.addEventListener('click', viewScore());
+replayEl.addEventListener('click', startGame());
+backEl.addEventListener('click', startGame());
+
 
 function viewScore(){
-
-
+  window.location.href = 'highScore.html';
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function getQs() {
-//   var currentQs = question[questionIndex];
-
-//   //update
-
-//   var screenEl = document.getElementById("display");//why is display here? I have no element with an ID of display
-//   screenEl.textContent = currentQs.title; // what goes here?
-
-//   // clear old qs
-
-//   userchoice.innerHTML = "";
-
-//   //loop over qs
-//   currentQs.userchoice.array.forEach(function (choice, i) {
-//     //create variable for button for each choice -
-
-//     qbutton.setAttribute("class", "ansButton");
-//     qbutton.setAttribute("value", choice);
-
-//     qbutton.textContent = i + 1 + " " + choice;
-
-//     //attach click event
-//     qbutton.onclick = correctAnswer;
-
-//     //display on screen
-//     qbuttonEl.appendChild(ChoiceNode);
-//   });
-// }
-
-// // function startQuiz(){
-// // console.log("Started")
-// // startButton.classList.add('hide');
-// // questionContainerElement .classList.remove('hide');
-// // timer();
-// // }
-
-// // function timer(){
-// //     console.log("timer started")
-// // }
-
-// // function setNextQuestion(){
-
-// // }
-
-// // function selectAnswer(){
-
-// // }
-
-// // create variables for elements
-
-// const pTags = document.querySelectorAll("p");
-// const hTags = document.querySelectorAll("h1");
-
-// hTags[0].setAttribute("style", "color:blue;");
-
-
 
