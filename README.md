@@ -1,12 +1,10 @@
 # javaScript-Quiz
 
-//hide first question
-//show start button
-// fix windows for highscore page and view score page - event listeners
-// remove alert and put text for correct or incorrect
-// show score on view score page
-// save initials and scores and display in highscore page
 
+// fix buttons for backEl and replayEl
+// save initials and scores and display in highscore page
+// create clear highscores button
+// remove alert and put text for correct or incorrect
 
 
 //style everything
