@@ -65,14 +65,15 @@ startEl.addEventListener("click", function() {
 function createQuestion(){
    
    
-    var count = 0;
+    //var count = 0;
         //create
        var pEl = document.createElement('p');
       
        //update
-       pEl.textContent = questions[count].question;
+      // pEl.textContent = questions[count].question;
+      pEl.textContent = questions[questionsIndex].question;
       //append
-       questionEl.appendChild(pEl);
+       //questionEl.appendChild(pEl);
 
        showQs.textContent = questions[questionsIndex].question
 
@@ -125,7 +126,6 @@ function createQuestion(){
    }
   }
 
-
   function setTimer(){
 
   var timeInterval = setInterval(function(){
@@ -133,9 +133,9 @@ function createQuestion(){
   seconds--
   timerEl.textContent = seconds
 
-if(seconds === 0){
+if(seconds === 0 ||questionsIndex === questions.length){
     timerEl.textContent = '0';
-    clearInterval(timeInterval)
+    clearInterval(timeInterval);
     //alert("Game Over")
     endGame()
   }
@@ -158,7 +158,7 @@ function endGame (){
    enterEl.classList.remove('hide');
    questionEl.classList.add('hide');
    answersEl.classList.add('hide');
-   timerEl.classList.add('hide');
+   //timerEl.classList.add('hide');
    questionsIndex = 0;
   
 }
@@ -175,11 +175,27 @@ submitEl.addEventListener("click", function() {
 });
 
 replayEl.addEventListener("click", function() {
+  questionEl.classList.remove('hide');
+  answersEl.classList.remove('hide');
+  highScoreEl.classList.add('hide');
+  enterEl.classList.add('hide');
+  seconds = 20
+  score = 0
+  incorrect = 0
+  setTimer();
+  //timerEl.classList.remove('hide');
   startGame();
   console.log(replayEl)
 });
 
 backEl.addEventListener("click", function() {
+  questionEl.classList.remove('hide');
+  answersEl.classList.remove('hide');
+  seconds = 20
+  score = 0
+  incorrect = 0
+  setTimer();
+  //timerEl.classList.remove('hide');
   startGame();
 });
 
@@ -189,4 +205,7 @@ function viewScore(){
   enterEl.classList.add('hide');
   
 }
+
+
+
 
