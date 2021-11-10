@@ -37,7 +37,9 @@ var timerEl = document.querySelector('.countdown');
 var mainEl = document.querySelector('#main');
 var answersEl = document.querySelector(".answerContainer");
 var showQs = document.getElementById('displayQs');
-var responseEL = document.getElementById('response');
+var responseEL = document.getElementById('#response');
+var scoresEL = document.getElementById('#scoresList');
+
 
 //var answerEl = document.querySelector(".answerButton");
 
@@ -144,11 +146,7 @@ if(seconds === 0 ||questionsIndex === questions.length){
 
   };
 
-  // function saveDetails() {
-  //  //var initials= localStorage.getItem("initials");
-  //  //userInitialSpan.textContent = initials;
-  // //localStorage.setItem("initials" ,initials)
-  //   }
+ 
     
 
 function endGame (){
@@ -163,6 +161,20 @@ function endGame (){
   
 }
 
+
+// var userInitials = document.getElementById('#user-initials');
+// var initials = document.querySelector('#initials').value;
+
+// function displayInitial (){
+//   localStorage.setItem('initials',initials)
+
+// }
+// var localInitials = localStorage.getItem('initials');
+// userInitials.textContent = localInitials;
+// displayInitial();
+
+
+
 //var scoreEl = document.getElementById("scoreTotal")
 var replayEl = document.getElementById("playAgain");
 var submitEl = document.getElementById('submit');
@@ -172,6 +184,12 @@ var backEl = document.getElementById('goBack');
 
 submitEl.addEventListener("click", function() {
   viewScore();
+  playerInitials = initials.value;
+  console.log(playerInitials);
+  console.log(score);
+
+  
+
 });
 
 replayEl.addEventListener("click", function() {
@@ -182,21 +200,21 @@ replayEl.addEventListener("click", function() {
   seconds = 20
   score = 0
   incorrect = 0
-  setTimer();
   //timerEl.classList.remove('hide');
   startGame();
-  console.log(replayEl)
+  
 });
 
 backEl.addEventListener("click", function() {
-  questionEl.classList.remove('hide');
-  answersEl.classList.remove('hide');
+  //questionEl.classList.remove('hide');
+  //answersEl.classList.remove('hide');
+  highScoreEl.classList.add('hide');
+  enterEl.classList.remove('hide');
   seconds = 20
   score = 0
   incorrect = 0
-  setTimer();
   //timerEl.classList.remove('hide');
-  startGame();
+  //startGame();
 });
 
 
@@ -208,4 +226,8 @@ function viewScore(){
 
 
 
-
+ // function saveDetails() {
+  //  //var initials= localStorage.getItem("initials");
+  //  //userInitialSpan.textContent = initials;
+  // //localStorage.setItem("initials" ,initials)
+  //   }

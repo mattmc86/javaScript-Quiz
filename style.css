@@ -40,7 +40,6 @@ flex-direction: column;
 }
 
 
-
 .hide{
     display: none;
 } 
@@ -56,6 +55,10 @@ flex-direction: column;
     height: 20px;
     margin: 10px;
 
+}
+
+.scoresList{
+    list-style: none;
 }
 
 /* body{
