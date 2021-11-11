@@ -151,7 +151,7 @@ if(seconds === 0 ||questionsIndex === questions.length){
 
 function endGame (){
   
-  scoreTotal.textContent = [score];
+  scoreTotal.textContent = score;
   //localStorage.setItem("scoreTotal" ,score)
    enterEl.classList.remove('hide');
    questionEl.classList.add('hide');
@@ -230,12 +230,14 @@ function viewScore(){
 function submitScore(){
   var scores = JSON.parse(localStorage.getItem("scoreTotal"))|| [];
   initials = initials.value;
+  initialsSaved = JSON.parse(localStorage.getItem("initials"))|| [];
   console.log(initials)
   console.log(score)
   var newScore = { initials, score }  //this is the same as { initials: initials, score: score }
   console.log(newScore)
-  //scores.push(newScore)
+  scores.push(newScore)
   localStorage.setItem("scoreTotal", JSON.stringify([scores]));
+  localStorage.setItem("initials", JSON.stringify([initialsSaved]));
   for (var i = 0; i < scoreTotal.length; i++) {
     var scoreToDisplay = scoreTotal[i];
     //Append scoreToDisplay to whichever element is supposed to hold the score information
