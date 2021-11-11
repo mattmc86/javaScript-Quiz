@@ -38,7 +38,7 @@ var mainEl = document.querySelector('#main');
 var answersEl = document.querySelector(".answerContainer");
 var showQs = document.getElementById('displayQs');
 var responseEL = document.getElementById('#response');
-var scoresEl = document.getElementById('#scoresList');
+var scoresEl = document.getElementById('scoresList');
 
 
 //var answerEl = document.querySelector(".answerButton");
@@ -179,7 +179,7 @@ function endGame (){
 var replayEl = document.getElementById("playAgain");
 var submitEl = document.getElementById('submit');
 var backEl = document.getElementById('goBack');
-//var clearEl = document.getElementById('clear');
+var clearEl = document.getElementById('clear');
 
 
 submitEl.addEventListener("click", function() {
@@ -218,6 +218,10 @@ backEl.addEventListener("click", function() {
   //startGame();
 });
 
+clearEl.addEventListener("click", function() {
+  scoresEl.remove();
+  
+});
 
 function viewScore(){
   highScoreEl.classList.remove('hide');
@@ -226,21 +230,36 @@ function viewScore(){
 }
 
 
+
 function submitScore(){
-  var scores = JSON.parse(localStorage.getItem("scoreTotal"))|| [];
+
+var scores = JSON.parse(localStorage.getItem("scoreTotal"))|| [];
   initials = initials.value;
   var newScore = { initials, score };
   console.log(newScore)
-  scores.push(newScore)
-  localStorage.setItem("scoreTotal", JSON.stringify([scores]));
+  scores.push(newScore);
+  localStorage.setItem("scoreTotal", JSON.stringify(scores));
   console.log("new score is " + scores);
 
-  for (var i = 0; i < scores.length; i++) {
-    var scoreToDisplay = scores[i];
-    scoreToDisplay.appendChild(scoresEl);
-  }
+for (var i = 0; i < scores.length; i++) {
+  var scoreItem = document.createElement ("LI");
+  
+  scoreItem.textContent = scores
+  console.log("score item is " +scoreItem)
+  console.log("scores "+ scores)
+  // set the text of this new element
+  scoresEl.appendChild(scoreItem);
+}
+  
 }
 
+
+// for (var i = 0; i < scores.length; i++) {
+  //   var scoreItem = document.createElement ("LI");
+  //   var addScore = scores.textContent
+  //   scoreItem.appendChild(addScore);
+
+  // }
 
  // for (var i = 0; i < scoreTotal.length; i++) {
   //   var scoreToDisplay = scoreTotal[i];
