@@ -225,28 +225,28 @@ function viewScore(){
   
 }
 
-//var scoreArray = [{initials: initials, score: score}]
-//var highscores = "";
+
 function submitScore(){
   var scores = JSON.parse(localStorage.getItem("scoreTotal"))|| [];
   initials = initials.value;
-  initialsSaved = JSON.parse(localStorage.getItem("initials"))|| [];
-  console.log(initials)
-  console.log(score)
-  var newScore = { initials, score }  //this is the same as { initials: initials, score: score }
+  var newScore = { initials, score };
   console.log(newScore)
   scores.push(newScore)
   localStorage.setItem("scoreTotal", JSON.stringify([scores]));
-  localStorage.setItem("initials", JSON.stringify([initialsSaved]));
-  for (var i = 0; i < scoreTotal.length; i++) {
-    var scoreToDisplay = scoreTotal[i];
-    //Append scoreToDisplay to whichever element is supposed to hold the score information
+  console.log("new score is " + scores);
+
+  for (var i = 0; i < scores.length; i++) {
+    var scoreToDisplay = scores[i];
     scoreToDisplay.appendChild(scoresEl);
-    
   }
 }
 
 
-
+ // for (var i = 0; i < scoreTotal.length; i++) {
+  //   var scoreToDisplay = scoreTotal[i];
+  //   //Append scoreToDisplay to whichever element is supposed to hold the score information
+  //   scoreToDisplay.appendChild(scoresEl);
+    
+  // }
 
   
