@@ -38,7 +38,7 @@ var mainEl = document.querySelector('#main');
 var answersEl = document.querySelector(".answerContainer");
 var showQs = document.getElementById('displayQs');
 var responseEL = document.getElementById('#response');
-var scoresEL = document.getElementById('#scoresList');
+var scoresEl = document.getElementById('#scoresList');
 
 
 //var answerEl = document.querySelector(".answerButton");
@@ -183,12 +183,13 @@ var backEl = document.getElementById('goBack');
 
 
 submitEl.addEventListener("click", function() {
+  submitScore();
   viewScore();
   playerInitials = initials.value;
   console.log(playerInitials);
   console.log(score);
 
-  
+
 
 });
 
@@ -224,10 +225,23 @@ function viewScore(){
   
 }
 
+//var scoreArray = [{initials: initials, score: score}]
+
+function submitScore(){
+  var scores = JSON.parse(localStorage.getItem("highscores"));
+  initials = initials.value;
+  var newScore = { initials, score }  //this is the same as { initials: initials, score: score }
+  scores.push(newScore)
+  localStorage.setItem("highscores", JSON.stringify(scores));
+  for (var i = 0; i < highscores.length; i++) {
+    var scoreToDisplay = highscores[i];
+    //Append scoreToDisplay to whichever element is supposed to hold the score information
+    scoreToDisplay.appendChild(scoresEl);
+    
+  }
+}
 
 
- // function saveDetails() {
-  //  //var initials= localStorage.getItem("initials");
-  //  //userInitialSpan.textContent = initials;
-  // //localStorage.setItem("initials" ,initials)
-  //   }
+
+
+  
