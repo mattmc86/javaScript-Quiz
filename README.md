@@ -19,7 +19,7 @@ Timer will not end correctly if alert is showing at 0 - so will go to -1, same i
 
 Contact Name: Matthew McKenna email:matthewmckenna1986@hotmail.com
 
-Project Link: https://github.com/mattmc86/javaScript-Quiz
+Project Link: https://mattmc86.github.io/javaScript-Quiz/
 
 
 
