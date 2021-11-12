@@ -70,6 +70,7 @@ function createQuestion(){
     //var count = 0;
         //create
        var pEl = document.createElement('p');
+       pEl.setAttribute('style', 'font-size:90px');
       
        //update
       // pEl.textContent = questions[count].question;
@@ -86,7 +87,7 @@ function createQuestion(){
        for (var i=0; i <=questions[questionsIndex].choices.length; i++){
 
         var buttonEl = document.createElement("button");
-        buttonEl.setAttribute('class', 'background: purple');
+        buttonEl.setAttribute('style', 'background-color: purple ;color: white ;');
     
         buttonEl.textContent = questions[questionsIndex].choices[i];
 
@@ -115,7 +116,7 @@ function createQuestion(){
     } else {
       alert ('incorrect');
       incorrect += 
-      
+      //timerValue -=10; 
       seconds -= 5;
     }
 
@@ -133,9 +134,10 @@ function createQuestion(){
   var timeInterval = setInterval(function(){
 
   seconds--
-  timerEl.textContent = seconds
+  timerEl.textContent = "Time left " + seconds;
 
 if(seconds === 0 ||questionsIndex === questions.length){
+    timerEl.setAttribute('style', 'font-size:50px');
     timerEl.textContent = '0';
     clearInterval(timeInterval);
     //alert("Game Over")
@@ -146,9 +148,23 @@ if(seconds === 0 ||questionsIndex === questions.length){
 
   };
 
- 
+// function setTimer(){
+//   let timerValue = 30
     
-
+//   var timerMinusSeconds = function (){
+//       timerValue --
+      
+//       let timerCountdown = document.getElementById('timercountdowntext');
+//       timerCountdown.innerHTML = "Time =" + timerValue;
+      
+//       if (timerValue == 0){
+//           clearInterval(timerDown)
+//       }
+//   }
+  
+//   const timerDown = setInterval(timerMinusSeconds,1000)
+    
+// }
 function endGame (){
   
   scoreTotal.textContent = score;
@@ -244,7 +260,8 @@ var scores = JSON.parse(localStorage.getItem("scoreTotal"))|| [];
 for (var i = 0; i < scores.length; i++) {
   var scoreItem = document.createElement ("LI");
   
-  scoreItem.textContent = scores
+  scoreItem.innerHTML = scores [i].initials + " " + scores [i].score;
+  //scoreItem.innerHTML = scores
   console.log("score item is " +scoreItem)
   console.log("scores "+ scores)
   // set the text of this new element
@@ -254,18 +271,5 @@ for (var i = 0; i < scores.length; i++) {
 }
 
 
-// for (var i = 0; i < scores.length; i++) {
-  //   var scoreItem = document.createElement ("LI");
-  //   var addScore = scores.textContent
-  //   scoreItem.appendChild(addScore);
-
-  // }
-
- // for (var i = 0; i < scoreTotal.length; i++) {
-  //   var scoreToDisplay = scoreTotal[i];
-  //   //Append scoreToDisplay to whichever element is supposed to hold the score information
-  //   scoreToDisplay.appendChild(scoresEl);
-    
-  // }
 
   
